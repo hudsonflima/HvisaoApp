@@ -1,0 +1,58 @@
+﻿@model HvisaoApp.Models.Lentes
+
+@{
+    ViewBag.Title = "Detalhes da Solicitação";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Lentes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paciente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paciente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataPedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataPedido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entregue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entregue)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.SolicitacaoId }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

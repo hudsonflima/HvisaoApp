@@ -1,0 +1,57 @@
+﻿@model IEnumerable<HvisaoApp.Models.Lentes>
+
+@{
+    ViewBag.Title = "Solicitação de Lentes";
+}
+
+<h2>Solicitação de Lentes</h2>
+
+<p>
+    @Html.ActionLink("Nova Solicitação", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Registro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paciente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entregue)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Registro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paciente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataPedido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entregue)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.SolicitacaoId }) |
+            @Html.ActionLink("Deatalhar", "Details", new { id=item.SolicitacaoId }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.SolicitacaoId })
+        </td>
+    </tr>
+}
+
+</table>
