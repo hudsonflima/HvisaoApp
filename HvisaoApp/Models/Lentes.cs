@@ -14,7 +14,7 @@ namespace HvisaoApp.Models
         [Required(ErrorMessage = "Informe a descrição da solicitação.")]
         public string Descricao { get; set; }
         [Required(ErrorMessage = "Informe a data de aquisição.")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
         public DateTime? DataPedido { get; set; }
         public bool Entregue { get; set; }
     }
