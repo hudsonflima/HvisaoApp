@@ -1,0 +1,63 @@
+﻿@model IEnumerable<HvisaoApp.Models.Estacao>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Hostname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Setor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnderecoIp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SistemaOperacional)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChavedeAtivacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hostname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Setor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnderecoIp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SistemaOperacional)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChavedeAtivacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ativo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EstacaoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EstacaoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EstacaoId })
+        </td>
+    </tr>
+}
+
+</table>

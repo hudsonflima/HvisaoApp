@@ -1,0 +1,58 @@
+﻿@model HvisaoApp.Models.Servidor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Servidor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hostname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hostname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Funcao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Funcao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnderecoIp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnderecoIp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SistemaOperacional)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SistemaOperacional)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChavedeAtivacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChavedeAtivacao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ServidorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

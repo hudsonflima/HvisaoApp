@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GestorAtivosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Estacao">
+          <Key>
+            <PropertyRef Name="EstacaoId" />
+          </Key>
+          <Property Name="EstacaoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Setor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EnderecoIp" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SistemaOperacional" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ChavedeAtivacao" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Impressora">
+          <Key>
+            <PropertyRef Name="ImpressoraId" />
+          </Key>
+          <Property Name="ImpressoraId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Modelo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Monocromatica" Type="bit" Nullable="false" />
+          <Property Name="Colorida" Type="bit" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Setor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EnderecoIp" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EstacaoId" Type="int" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Servidor">
+          <Key>
+            <PropertyRef Name="ServidorId" />
+          </Key>
+          <Property Name="ServidorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Funcao" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EnderecoIp" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SistemaOperacional" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ChavedeAtivacao" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Impressora_dbo_Estacao_EstacaoId">
+          <End Role="Estacao" Type="Self.Estacao" Multiplicity="1" />
+          <End Role="Impressora" Type="Self.Impressora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estacao">
+              <PropertyRef Name="EstacaoId" />
+            </Principal>
+            <Dependent Role="Impressora">
+              <PropertyRef Name="EstacaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestorAtivosModelStoreContainer">
+          <EntitySet Name="Estacao" EntityType="Self.Estacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Impressora" EntityType="Self.Impressora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servidor" EntityType="Self.Servidor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Impressora_dbo_Estacao_EstacaoId" Association="Self.FK_dbo_Impressora_dbo_Estacao_EstacaoId">
+            <End Role="Estacao" EntitySet="Estacao" />
+            <End Role="Impressora" EntitySet="Impressora" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestorAtivosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Estacao">
+          <Key>
+            <PropertyRef Name="EstacaoId" />
+          </Key>
+          <Property Name="EstacaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hostname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Setor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EnderecoIp" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SistemaOperacional" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ChavedeAtivacao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Impressora" Relationship="Self.FK_dbo_Impressora_dbo_Estacao_EstacaoId" FromRole="Estacao" ToRole="Impressora" />
+        </EntityType>
+        <EntityType Name="Impressora">
+          <Key>
+            <PropertyRef Name="ImpressoraId" />
+          </Key>
+          <Property Name="ImpressoraId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marca" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Modelo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Monocromatica" Type="Boolean" Nullable="false" />
+          <Property Name="Colorida" Type="Boolean" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Setor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EnderecoIp" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EstacaoId" Type="Int32" Nullable="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Estacao" Relationship="Self.FK_dbo_Impressora_dbo_Estacao_EstacaoId" FromRole="Impressora" ToRole="Estacao" />
+        </EntityType>
+        <EntityType Name="Servidor">
+          <Key>
+            <PropertyRef Name="ServidorId" />
+          </Key>
+          <Property Name="ServidorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hostname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Funcao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EnderecoIp" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SistemaOperacional" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ChavedeAtivacao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Impressora_dbo_Estacao_EstacaoId">
+          <End Role="Estacao" Type="Self.Estacao" Multiplicity="1" />
+          <End Role="Impressora" Type="Self.Impressora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estacao">
+              <PropertyRef Name="EstacaoId" />
+            </Principal>
+            <Dependent Role="Impressora">
+              <PropertyRef Name="EstacaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestorAtivosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Estacao" EntityType="Self.Estacao" />
+          <EntitySet Name="Impressora" EntityType="Self.Impressora" />
+          <EntitySet Name="Servidor" EntityType="Self.Servidor" />
+          <AssociationSet Name="FK_dbo_Impressora_dbo_Estacao_EstacaoId" Association="Self.FK_dbo_Impressora_dbo_Estacao_EstacaoId">
+            <End Role="Estacao" EntitySet="Estacao" />
+            <End Role="Impressora" EntitySet="Impressora" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestorAtivosModelStoreContainer" CdmEntityContainer="GestorAtivosEntities">
+          <EntitySetMapping Name="Estacao">
+            <EntityTypeMapping TypeName="GestorAtivosModel.Estacao">
+              <MappingFragment StoreEntitySet="Estacao">
+                <ScalarProperty Name="EstacaoId" ColumnName="EstacaoId" />
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="Setor" ColumnName="Setor" />
+                <ScalarProperty Name="EnderecoIp" ColumnName="EnderecoIp" />
+                <ScalarProperty Name="SistemaOperacional" ColumnName="SistemaOperacional" />
+                <ScalarProperty Name="ChavedeAtivacao" ColumnName="ChavedeAtivacao" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Impressora">
+            <EntityTypeMapping TypeName="GestorAtivosModel.Impressora">
+              <MappingFragment StoreEntitySet="Impressora">
+                <ScalarProperty Name="ImpressoraId" ColumnName="ImpressoraId" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Monocromatica" ColumnName="Monocromatica" />
+                <ScalarProperty Name="Colorida" ColumnName="Colorida" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Setor" ColumnName="Setor" />
+                <ScalarProperty Name="EnderecoIp" ColumnName="EnderecoIp" />
+                <ScalarProperty Name="EstacaoId" ColumnName="EstacaoId" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servidor">
+            <EntityTypeMapping TypeName="GestorAtivosModel.Servidor">
+              <MappingFragment StoreEntitySet="Servidor">
+                <ScalarProperty Name="ServidorId" ColumnName="ServidorId" />
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="Funcao" ColumnName="Funcao" />
+                <ScalarProperty Name="EnderecoIp" ColumnName="EnderecoIp" />
+                <ScalarProperty Name="SistemaOperacional" ColumnName="SistemaOperacional" />
+                <ScalarProperty Name="ChavedeAtivacao" ColumnName="ChavedeAtivacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

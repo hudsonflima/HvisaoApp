@@ -178,9 +178,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EstacoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImpressorasController.cs" />
     <Compile Include="Controllers\LentesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ServidoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,9 +194,33 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BancoContexto.cs" />
+    <Compile Include="Models\Estacao.cs">
+      <DependentUpon>GestaoAtivos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestaoAtivos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestaoAtivos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestaoAtivos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestaoAtivos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestaoAtivos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestaoAtivos.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Impressora.cs">
+      <DependentUpon>GestaoAtivos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Lentes.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Servidor.cs">
+      <DependentUpon>GestaoAtivos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -205,8 +232,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\GestaoAtivos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GestaoAtivos.edmx</DependentUpon>
+      <LastGenOutput>GestaoAtivos.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\GestaoAtivos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GestaoAtivos.edmx</DependentUpon>
+      <LastGenOutput>GestaoAtivos.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\GestaoAtivos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GestaoAtivos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\GestaoAtivos.edmx.diagram">
+      <DependentUpon>GestaoAtivos.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -258,6 +302,21 @@
     <Content Include="Views\Lentes\Details.cshtml" />
     <Content Include="Views\Lentes\Edit.cshtml" />
     <Content Include="Views\Lentes\Index.cshtml" />
+    <Content Include="Views\Estacoes\Create.cshtml" />
+    <Content Include="Views\Estacoes\Delete.cshtml" />
+    <Content Include="Views\Estacoes\Details.cshtml" />
+    <Content Include="Views\Estacoes\Edit.cshtml" />
+    <Content Include="Views\Estacoes\Index.cshtml" />
+    <Content Include="Views\Impressoras\Create.cshtml" />
+    <Content Include="Views\Impressoras\Delete.cshtml" />
+    <Content Include="Views\Impressoras\Details.cshtml" />
+    <Content Include="Views\Impressoras\Edit.cshtml" />
+    <Content Include="Views\Impressoras\Index.cshtml" />
+    <Content Include="Views\Servidores\Create.cshtml" />
+    <Content Include="Views\Servidores\Delete.cshtml" />
+    <Content Include="Views\Servidores\Details.cshtml" />
+    <Content Include="Views\Servidores\Edit.cshtml" />
+    <Content Include="Views\Servidores\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

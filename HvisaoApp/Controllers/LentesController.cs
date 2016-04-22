@@ -1,8 +1,10 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using HvisaoApp.Models;
+using PagedList;
 
 namespace HvisaoApp.Controllers
 {
@@ -11,9 +13,49 @@ namespace HvisaoApp.Controllers
         private BancoContexto db = new BancoContexto();
 
         // GET: Lentes
-        public ActionResult Index()
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Lentes.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var students = from s in db.Lentes
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.Paciente.Contains(searchString)
+                                       || s.Descricao.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    students = students.OrderByDescending(s => s.Paciente);
+                    break;
+                case "Date":
+                    students = students.OrderBy(s => s.Registro);
+                    break;
+                case "date_desc":
+                    students = students.OrderByDescending(s => s.Descricao);
+                    break;
+                default:  // Name ascending 
+                    students = students.OrderBy(s => s.Paciente);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(students.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Lentes/Details/5

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<HvisaoApp.Models.Lentes>
+﻿@using System.Data.SqlClient
+@model IEnumerable<HvisaoApp.Models.Lentes>
 
 @{
     ViewBag.Title = "Solicitação de Lentes";
@@ -9,24 +10,33 @@
 <p>
     @Html.ActionLink("Nova Solicitação", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Lentes", FormMethod.Get))
+{
+    <p>
+        Pesquisar por Nome: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input class="btn btn-sm btn-primary" type="submit" value="Buscar" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Registro)
+            @Html.ActionLink("Registro", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Paciente)
+            @Html.ActionLink("Paciente", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descricao)
+            @Html.ActionLink("Descrição", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DataPedido)
+            @Html.ActionLink("DataPedido", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Entregue)
         </th>
-        <th></th>
+        <th>Ações</th>
     </tr>
 
 @foreach (var item in Model) {
