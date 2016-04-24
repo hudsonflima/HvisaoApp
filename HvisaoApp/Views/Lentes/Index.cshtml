@@ -1,5 +1,7 @@
 ﻿@using System.Data.SqlClient
 @model IEnumerable<HvisaoApp.Models.Lentes>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Solicitação de Lentes";
@@ -13,55 +15,61 @@
 
 @using (Html.BeginForm("Index", "Lentes", FormMethod.Get))
 {
-    <p>
-        Pesquisar por Nome: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input class="btn btn-sm btn-primary" type="submit" value="Buscar" />
-    </p>
+    <div class="form-group">
+        <label class="control-label">Pesquisar por nome: </label>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new {@class = "form-control"})
+        <input class="btn btn-default" type="submit" value="Buscar"/>
+    </div>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Registro", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("Paciente", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("Descrição", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("DataPedido", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Entregue)
-        </th>
-        <th>Ações</th>
-    </tr>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Registro", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Paciente", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Descrição", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("DataPedido", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entregue)
+            </th>
+            <th>Ações</th>
+        </tr>
+    </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Registro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paciente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataPedido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Entregue)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.SolicitacaoId }) |
-            @Html.ActionLink("Detalhar", "Details", new { id=item.SolicitacaoId }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.SolicitacaoId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr class="default">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Registro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataPedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entregue)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.SolicitacaoId }) |
+                    @Html.ActionLink("Detalhar", "Details", new { id = item.SolicitacaoId }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.SolicitacaoId })
+                </td>
+            </tr>
+        </tbody>
+    }
 
 </table>

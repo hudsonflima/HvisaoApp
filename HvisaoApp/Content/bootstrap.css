@@ -4967,8 +4967,14 @@ a.badge:focus {
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #162d4c;
 }
+
+.dropshadow {
+
+    box-shadow: 5px 5px 5px #888888;
+}
+
 .jumbotron h1,
 .jumbotron .h1 {
   color: inherit;
